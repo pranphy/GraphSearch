@@ -1,6 +1,8 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <algorithm>
+
 #include "SlideCore.h"
 
 class Node
@@ -11,6 +13,7 @@ class Node
 		Direction Action;
 		unsigned PathCost;
 		unsigned Depth;
+		vector<Direction> StepsTaken;
 	protected:
 		//
 	public:
@@ -22,6 +25,8 @@ class Node
 		void SetDepth(unsigned);
 		void SetPathCost(unsigned);
 		void DisplayDetail();
+		void SetStepsTaken(vector<Direction>);
+		vector<Direction> GetStepsTaken();
 };
 
 #endif // NODE_H

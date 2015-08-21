@@ -25,7 +25,7 @@ bool Problem::Solve()
 	Node RootNode(InitialState,InitialState);
 	vector<Node> RootChildren = RootNode.GetChildren();
 	Sequence.PutChildren(RootChildren);
-	unsigned Counter = 0,p;
+	unsigned Counter = 0;//,p;
 	while(Counter < 99999)
 	{
 		if(Sequence.empty()){
@@ -36,12 +36,16 @@ bool Problem::Solve()
 		else
 		{
 			Node CurrentNode = Sequence.front(); Sequence.pop();
-			cout<<" Current Node "<<endl;
-			CurrentNode.DisplayDetail();
-			cin>>p;
+			//cout<<" Current Node "<<endl;
+			//CurrentNode.DisplayDetail();
+			//cin>>p;
 			if(IsGoal(CurrentNode))
 			{
 				cout<<" Solution Found "<<endl;
+				SolutionSteps = CurrentNode.GetStepsTaken();
+				string Dir[] = {"UP","Down","Left","Right"};
+				for(auto St : SolutionSteps)
+					cout<<Dir[St]<<" then "<<endl;
 				return true;
 			}
 
@@ -52,7 +56,8 @@ bool Problem::Solve()
 			}
 		}
 		Counter++;
-		cout<<" Fringe size "<<Sequence.size()<<endl;
+		//cout<<" Fringe size "<<Sequence.size()<<endl;
 	}
+	return true;
 }
 

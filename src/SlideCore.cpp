@@ -124,6 +124,13 @@ vector<SlideCore> SlideCore::MakeAllMoves()
 	return this->MakeMoves(Moves);
 }
 
+SlideCore SlideCore::MakeOneMove(Direction CurrentMove)
+{
+	SlideCore Current(*this);
+	Current.Move(CurrentMove);
+	return Current;
+}
+
 /*
 vector<Direction> SlideCore::PossibleMoves()
 {

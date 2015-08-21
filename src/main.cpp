@@ -13,11 +13,14 @@ using namespace std;
 int main()
 {
 	cout<<" Hello World !"<<endl;
-	SlideCore Initial(3,3);
-	SlideCore Goal(Initial);
-	Goal.Move(Direction::Down);
-	Goal.Move(Direction::Down);
-	Goal.Move(Direction::Right);
+	SlideCore Goal(3,3);
+	SlideCore Initial(Goal);
+	Initial.Move(Direction::Down);
+	Initial.Move(Direction::Down);
+	Initial.Move(Direction::Right);
+	Initial.Move(Direction::Right);
+	Initial.Move(Direction::Up);
+
 	Problem EightProblem(Initial,Goal);
 	EightProblem.DisplayInfo();
 	EightProblem.Solve();
