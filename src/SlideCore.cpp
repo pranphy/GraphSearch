@@ -61,6 +61,10 @@ void SlideCore::Move(Direction D)
 	}
 }
 
+int SlideCore::GetVal(int Row,int Col)
+{
+	return Data[Row][Col];
+}
 
 bool SlideCore::operator==(SlideCore TestCore)
 {

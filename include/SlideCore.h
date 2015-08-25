@@ -29,6 +29,7 @@ class SlideCore : public Matrix<int>
 		vector<SlideCore> MakeAllMoves();
 		SlideCore MakeOneMove(Direction);
 		bool operator==(SlideCore TestCore);
+		int GetVal(int,int);
 
 };
 

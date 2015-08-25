@@ -76,6 +76,8 @@ vector<Node> Node::GetChildren()
 		if(Move != ReverseAction)
 			RefinedMoves.push_back(Move);
 
+	RefinedMoves = Moves;
+
 	//cout<<" Moves now "<<endl;
 	//for(auto d:RefinedMoves)
 	//	cout<<d<<"   "<<endl;

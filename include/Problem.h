@@ -19,6 +19,9 @@ class Problem
 		bool IsGoal(Node&);
 		bool Solve();
 		void DisplayInfo();
+		vector<Direction> GetSolution();
+		void SetInitialState(SlideCore);
+		void SetGoalState(SlideCore);
 };
 
 #endif // PROBLEM_H

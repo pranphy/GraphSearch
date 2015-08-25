@@ -20,13 +20,28 @@ void Problem::DisplayInfo()
 	cout<<" I am trying to reach "<<endl<<GoalState<<endl;
 }
 
+vector<Direction> Problem::GetSolution()
+{
+	return SolutionSteps;
+}
+
+void Problem::SetInitialState(SlideCore Init)
+{
+	InitialState = Init;
+}
+
+void Problem::SetGoalState(SlideCore Fin)
+{
+	GoalState = Fin;
+}
+
 bool Problem::Solve()
 {
 	Node RootNode(InitialState,InitialState);
 	vector<Node> RootChildren = RootNode.GetChildren();
 	Sequence.PutChildren(RootChildren);
 	unsigned Counter = 0;//,p;
-	while(Counter < 99999)
+	while(Counter < 999999)
 	{
 		if(Sequence.empty())
 		{
@@ -43,15 +58,15 @@ bool Problem::Solve()
 			{
 				cout<<" Solution Found "<<endl;
 				SolutionSteps = CurrentNode.GetStepsTaken();
-				string Dir[] = {"UP","Down","Left","Right"};
-				SlideCore Current = InitialState;
-				for(auto St : SolutionSteps)
-				{
-					Current.Move(St);
-					cout<<Dir[St]<<" then "<<endl;
-					cout<<Current<<endl;
-				}
-				cout<<" Depath is "<<CurrentNode.GetDepth()<<endl;
+				//string Dir[] = {"UP","Down","Left","Right"};
+				//SlideCore Current = InitialState;
+//				for(auto St : SolutionSteps)
+//				{
+//					Current.Move(St);
+//					cout<<Dir[St]<<" then "<<endl;
+//					cout<<Current<<endl;
+//				}
+//				cout<<" Depath is "<<CurrentNode.GetDepth()<<endl;
 				return true;
 			}
 
@@ -64,6 +79,7 @@ bool Problem::Solve()
 		Counter++;
 		//cout<<" Fringe size "<<Sequence.size()<<endl;
 	}
+	cout<<" Steps exceeded "<<endl;
 	return true;
 }
 
