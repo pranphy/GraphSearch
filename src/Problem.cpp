@@ -28,6 +28,8 @@ vector<Direction> Problem::GetSolution()
 void Problem::SetInitialState(SlideCore Init)
 {
 	InitialState = Init;
+	SolutionSteps.clear();
+	//Sequence();
 }
 
 void Problem::SetGoalState(SlideCore Fin)
@@ -37,6 +39,7 @@ void Problem::SetGoalState(SlideCore Fin)
 
 bool Problem::Solve()
 {
+	cout<<" Somebody requested me to solve the puzzle "<<endl;
 	Node RootNode(InitialState,InitialState);
 	vector<Node> RootChildren = RootNode.GetChildren();
 	Sequence.PutChildren(RootChildren);

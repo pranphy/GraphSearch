@@ -15,6 +15,12 @@ using namespace std;
 
 namespace
 {
+	float BLOCK_LENGTH = 0.47;
+	float BLOCK_WIDTH  = 0.47;
+}
+
+namespace
+{
 	Problem EightProblem;
 	int StepCounter = 0, MaxSteps;
 	SlideCore CurrentState;
@@ -23,7 +29,7 @@ namespace
 
 namespace
 {
-    float WindowHeight=500, WindowWidth=500;
+    float WindowHeight=680, WindowWidth=680;
     GLuint Textures[15];
 }
 
@@ -72,25 +78,29 @@ void Initialize()
 	SlideCore Goal(4,4);
     SlideCore Initial(Goal);
 	CurrentState = Initial;
-	Initial.Move(Direction::Down);
+
 	Initial.Move(Direction::Right);
 	Initial.Move(Direction::Down);
 	Initial.Move(Direction::Down);
+	Initial.Move(Direction::Down);
+	Initial.Move(Direction::Left);
+	Initial.Move(Direction::Down);
 	Initial.Move(Direction::Right);
 	Initial.Move(Direction::Right);
 	Initial.Move(Direction::Right);
+	Initial.Move(Direction::Down);
+	Initial.Move(Direction::Left);
+	Initial.Move(Direction::Down);
+	Initial.Move(Direction::Down);
+	Initial.Move(Direction::Left);
+	Initial.Move(Direction::Left);
 	Initial.Move(Direction::Up);
-	Initial.Move(Direction::Right);
-	Initial.Move(Direction::Right);
-	Initial.Move(Direction::Down);
-	Initial.Move(Direction::Left);
-	Initial.Move(Direction::Left);
 	Initial.Move(Direction::Up);
 	Initial.Move(Direction::Up);
 
 	EightProblem.SetGoalState(Goal);
 	EightProblem.SetInitialState(Initial);
-	EightProblem.Solve();
+	//EightProblem.Solve();
 	Solution = EightProblem.GetSolution();
 	MaxSteps = Solution.size();
 	CurrentState = Initial;
@@ -135,7 +145,7 @@ void Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
     DisplayIt(CurrentState);
-    glColor3f(0.0,0.0,1.0);
+    //glColor3f(0.0,0.0,1.0);
     glutSwapBuffers();
 }
 
@@ -181,9 +191,9 @@ void DisplayIt(SlideCore Kernal)
 				//cout<<" to display "<<Power<<" now "<<endl;
 				DrawOne(x,y,Textures[Current-1]);
 			}
-			x += .30;
+			x += BLOCK_LENGTH - 0.001;
 		}
-		y -= .30;
+		y -= BLOCK_WIDTH - 0.001;
 	}
 
 }
@@ -196,9 +206,9 @@ void DrawOne(float PositionX,float PositionY,GLuint Texture)
     glBindTexture(GL_TEXTURE_2D,Texture);
     glEnable(GL_TEXTURE_2D);
     float factor=1;
-    float IMAGE_LENGTH=.3;
-    float IMAGE_BREADTH=.3;
-	glColor3f(1,1,0);
+    float IMAGE_LENGTH=BLOCK_LENGTH;
+    float IMAGE_BREADTH=BLOCK_WIDTH;
+	//glColor3f(1,1,0);
 
 	glBegin(GL_QUADS);
         glTexCoord3f(1.0f,0.0f,0.0f);           glVertex3f(factor*IMAGE_BREADTH/2,-factor*IMAGE_LENGTH/2,0);
@@ -237,9 +247,21 @@ void WhenKeyIsPressed(unsigned char key, int x, int y)
             exit(0);
             break;
 		case 'n':
-
 			if(StepCounter < MaxSteps)
 				CurrentState.Move(Solution.at(StepCounter++));
+			break;
+		case 's':
+			cout<<" Step Counter was "<<StepCounter<<endl;
+			cout<<"MaxSize was "<<MaxSteps<<endl;
+			cout<<" Now starting to solve "<<endl;
+			EightProblem.DisplayInfo();
+			EightProblem.Solve();
+			cout<<" Returned form solution "<<endl;
+			Solution = EightProblem.GetSolution();
+			MaxSteps = Solution.size();
+			cout<<"Solved "<<endl;
+			cout<<" Solution steps is "<<MaxSteps<<endl;
+			StepCounter = 0;
 			break;
 
         default:
@@ -251,28 +273,28 @@ void WhenKeyIsPressed(unsigned char key, int x, int y)
 
 void WhenSpecialKeysPressed(int key,int x,int y)
 {
-	/*
-    A.Display();
+
+    //A.Display();
 
     switch (key)
     {
         case GLUT_KEY_DOWN:
-			A.ArrowPressed(DOWN);
+			CurrentState.Move(Direction::Down);
             break;
         case GLUT_KEY_LEFT:
-			A.ArrowPressed(LEFT);
+			CurrentState.Move(Direction::Left);
             break;
         case GLUT_KEY_RIGHT:
-			A.ArrowPressed(RIGHT);
+			CurrentState.Move(Direction::Right);
             break;
         case GLUT_KEY_UP:
-			A.ArrowPressed(UP);
+			CurrentState.Move(Direction::Up);
             break;
         default:
             break;
     }
-    A.Display();
-    */
+    EightProblem.SetInitialState(CurrentState);
+    //A.Display();
 }
 
 
