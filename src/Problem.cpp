@@ -28,10 +28,10 @@ bool Problem::Solve()
 	unsigned Counter = 0;//,p;
 	while(Counter < 99999)
 	{
-		if(Sequence.empty()){
+		if(Sequence.empty())
+		{
 			cout<<" No Solution "<<endl;
 			return false;
-
 		}
 		else
 		{
@@ -44,8 +44,14 @@ bool Problem::Solve()
 				cout<<" Solution Found "<<endl;
 				SolutionSteps = CurrentNode.GetStepsTaken();
 				string Dir[] = {"UP","Down","Left","Right"};
+				SlideCore Current = InitialState;
 				for(auto St : SolutionSteps)
+				{
+					Current.Move(St);
 					cout<<Dir[St]<<" then "<<endl;
+					cout<<Current<<endl;
+				}
+				cout<<" Depath is "<<CurrentNode.GetDepth()<<endl;
 				return true;
 			}
 

@@ -13,10 +13,11 @@ using namespace std;
 int main()
 {
 	cout<<" Hello World !"<<endl;
-	SlideCore Goal(3,3);
+	SlideCore Goal(4,4);
 	SlideCore Initial(Goal);
 	Initial.Move(Direction::Down);
 	Initial.Move(Direction::Down);
+	Initial.Move(Direction::Right);
 	Initial.Move(Direction::Right);
 	Initial.Move(Direction::Right);
 	Initial.Move(Direction::Up);

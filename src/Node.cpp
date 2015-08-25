@@ -32,6 +32,11 @@ void Node::SetStepsTaken(vector<Direction> Steps)
 	StepsTaken = Steps;
 }
 
+unsigned Node::GetDepth()
+{
+	return Depth;
+}
+
 vector<Direction> Node::GetStepsTaken()
 {
 	return StepsTaken;

@@ -23,6 +23,7 @@ class Node
 		vector<Node> GetChildren();
 		void SetAction(Direction);
 		void SetDepth(unsigned);
+		unsigned GetDepth();
 		void SetPathCost(unsigned);
 		void DisplayDetail();
 		void SetStepsTaken(vector<Direction>);
