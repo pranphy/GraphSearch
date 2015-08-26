@@ -80,23 +80,22 @@ void Initialize()
 	CurrentState = Initial;
 
 	Initial.Move(Direction::Right);
-	Initial.Move(Direction::Down);
-	Initial.Move(Direction::Down);
-	Initial.Move(Direction::Down);
-	Initial.Move(Direction::Left);
-	Initial.Move(Direction::Down);
-	Initial.Move(Direction::Right);
-	Initial.Move(Direction::Right);
-	Initial.Move(Direction::Right);
+	//Initial.Move(Direction::Down);
+	//Initial.Move(Direction::Right);
+	//Initial.Move(Direction::Down);
+	//Initial.Move(Direction::Right);
 	Initial.Move(Direction::Down);
 	Initial.Move(Direction::Left);
-	Initial.Move(Direction::Down);
-	Initial.Move(Direction::Down);
-	Initial.Move(Direction::Left);
-	Initial.Move(Direction::Left);
+	//Initial.Move(Direction::Left);
 	Initial.Move(Direction::Up);
+	//Initial.Move(Direction::Left);
 	Initial.Move(Direction::Up);
-	Initial.Move(Direction::Up);
+	//Initial.Move(Direction::Right);
+	//Initial.Move(Direction::Up);
+	Initial.Move(Direction::Right);
+	//Initial.Move(Direction::Down);
+	Initial.Move(Direction::Right);
+	//Initial.Move(Direction::Up);
 
 	EightProblem.SetGoalState(Goal);
 	EightProblem.SetInitialState(Initial);
@@ -113,7 +112,7 @@ void LoadAllImages()
 	char imgnm[90];
     for(int i=0;i<15;i++)
     {
-        sprintf(imgnm,"/home/pranphy/Pictures/GRS/DK/CC%d.png",i+1);
+        sprintf(imgnm,"/home/pranphy/Pictures/GRS/LIV/CC%d.png",i+1);
         Textures[i]=LoadPhoto(imgnm);
     }
 }
@@ -251,6 +250,7 @@ void WhenKeyIsPressed(unsigned char key, int x, int y)
 				CurrentState.Move(Solution.at(StepCounter++));
 			break;
 		case 's':
+			EightProblem.ClearSequence();
 			cout<<" Step Counter was "<<StepCounter<<endl;
 			cout<<"MaxSize was "<<MaxSteps<<endl;
 			cout<<" Now starting to solve "<<endl;

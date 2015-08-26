@@ -29,7 +29,14 @@ void Problem::SetInitialState(SlideCore Init)
 {
 	InitialState = Init;
 	SolutionSteps.clear();
-	//Sequence();
+	//To clear the sequence.
+	ClearSequence();
+}
+
+void Problem::ClearSequence()
+{
+	while(!Sequence.empty())
+		Sequence.pop();
 }
 
 void Problem::SetGoalState(SlideCore Fin)

@@ -19,5 +19,5 @@ class Fringe : public std::queue<T>
 };
 
 #include "Fringe.hpp"
-
+//
 #endif // FRINGE_H

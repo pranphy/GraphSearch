@@ -22,6 +22,7 @@ class Problem
 		vector<Direction> GetSolution();
 		void SetInitialState(SlideCore);
 		void SetGoalState(SlideCore);
+		void ClearSequence();
 };
 
 #endif // PROBLEM_H
