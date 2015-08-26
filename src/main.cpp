@@ -49,6 +49,8 @@ GLuint LoadPhoto(char*);
 void DisplayIt(SlideCore);
 void DrawOne(float,float,GLuint);
 
+void SolveStepWise();
+
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
@@ -112,7 +114,7 @@ void LoadAllImages()
 	char imgnm[90];
     for(int i=0;i<15;i++)
     {
-        sprintf(imgnm,"/home/pranphy/Pictures/GRS/LIV/CC%d.png",i+1);
+        sprintf(imgnm,"/home/pranphy/Pictures/GRS/CC%d.png",i+1);
         Textures[i]=LoadPhoto(imgnm);
     }
 }
@@ -165,6 +167,13 @@ void DrawBoundary()
     //glLoadIdentity();
 }
 
+void SolveStepWise()
+{
+		//Call this in a second;
+	if(StepCounter < MaxSteps)
+			CurrentState.Move(Solution.at(StepCounter++));
+
+}
 
 void DisplayIt(SlideCore Kernal)
 {
@@ -245,9 +254,8 @@ void WhenKeyIsPressed(unsigned char key, int x, int y)
         case 27:
             exit(0);
             break;
-		case 'n':
-			if(StepCounter < MaxSteps)
-				CurrentState.Move(Solution.at(StepCounter++));
+		case 13:
+			SolveStepWise();
 			break;
 		case 's':
 			EightProblem.ClearSequence();
