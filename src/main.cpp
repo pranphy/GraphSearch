@@ -114,7 +114,7 @@ void LoadAllImages()
 	char imgnm[90];
     for(int i=0;i<15;i++)
     {
-        sprintf(imgnm,"/home/pranphy/Pictures/GRS/CC%d.png",i+1);
+        sprintf(imgnm,"/home/pranphy/Pictures/GRS/UTSA/CC%d.png",i+1);
         Textures[i]=LoadPhoto(imgnm);
     }
 }

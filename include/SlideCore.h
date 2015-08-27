@@ -30,7 +30,6 @@ class SlideCore : public Matrix<int>
 		SlideCore MakeOneMove(Direction);
 		bool operator==(SlideCore TestCore);
 		int GetVal(int,int);
-
 };
 
 #endif // SLIDECORE_H

@@ -35,8 +35,7 @@ void Problem::SetInitialState(SlideCore Init)
 
 void Problem::ClearSequence()
 {
-	while(!Sequence.empty())
-		Sequence.pop();
+	Sequence  = {}; // after c++11 only to clear the queue
 }
 
 void Problem::SetGoalState(SlideCore Fin)
