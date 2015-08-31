@@ -45,7 +45,7 @@ void Problem::SetGoalState(SlideCore Fin)
 
 bool Problem::Solve()
 {
-	cout<<" Somebody requested me to solve the puzzle "<<endl;
+	//cout<<" Somebody requested me to solve the puzzle "<<endl;
 	Node RootNode(InitialState,InitialState);
 	vector<Node> RootChildren = RootNode.GetChildren();
 	Sequence.PutChildren(RootChildren);
@@ -54,7 +54,7 @@ bool Problem::Solve()
 	{
 		if(Sequence.empty())
 		{
-			cout<<" No Solution "<<endl;
+			//cout<<" No Solution "<<endl;
 			return false;
 		}
 		else
@@ -65,7 +65,7 @@ bool Problem::Solve()
 			//cin>>p;
 			if(IsGoal(CurrentNode))
 			{
-				cout<<" Solution Found "<<endl;
+				//cout<<" Solution Found "<<endl;
 				SolutionSteps = CurrentNode.GetStepsTaken();
 				//string Dir[] = {"UP","Down","Left","Right"};
 				//SlideCore Current = InitialState;
@@ -88,7 +88,7 @@ bool Problem::Solve()
 		Counter++;
 		//cout<<" Fringe size "<<Sequence.size()<<endl;
 	}
-	cout<<" Steps exceeded "<<endl;
+	//cout<<" Steps exceeded "<<endl;
 	return true;
 }
 
