@@ -15,7 +15,7 @@ class Problem
 	public:
 		Problem();
 		Problem(SlideCore,SlideCore);
-		void Advance();
+		//void Advance();
 		bool IsGoal(Node&);
 		bool Solve();
 		void DisplayInfo();
