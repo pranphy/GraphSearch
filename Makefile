@@ -1,7 +1,7 @@
 #CC = /usr/bin/i586-mingw32msvc-g++
 
 
-WXVERSION = 2.8
+WXVERSION = 2.8 
 WXFLAGS  = `wx-config --version=$(WXVERSION) --cxxflags`
 WXLINKER = `wx-config --version=$(WXVERSION) --libs --gl-libs`
 
