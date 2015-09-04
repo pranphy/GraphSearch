@@ -1,12 +1,14 @@
 #include "DisplayCanvas.h"
 
 const long DisplayCanvas::ID_DisplayCanvas = wxNewId();
+const long DisplayCanvas::ID_SecondTimer = wxNewId();
 
 
 
 BEGIN_EVENT_TABLE(DisplayCanvas,wxGLCanvas)
     EVT_PAINT(DisplayCanvas::OnPaint)
     EVT_KEY_DOWN(DisplayCanvas::OnKeyPress)
+    EVT_TIMER(ID_SecondTimer,DisplayCanvas::OnSolveAutomatic)
 END_EVENT_TABLE()
 
 
@@ -17,7 +19,7 @@ DisplayCanvas::DisplayCanvas(wxWindow*Parent):
     char* argv[1] = { wxString((wxTheApp->argv)[0]).char_str() };
     glutInit(&argc,argv);
     Initialize();
-
+    SecondTimer = new wxTimer(this,ID_SecondTimer);
 }
 
 void DisplayCanvas::Initialize()
@@ -72,8 +74,14 @@ void DisplayCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
     glClear(GL_COLOR_BUFFER_BIT);
     DrawTriangle();
     Render();
+
     glFlush();
     SwapBuffers();
+    if(Finished)
+	{
+		wxMessageBox(wxT("Finished Solving"),wxT("Completed"));
+		Finished = false;
+	}
 }
 
 void DisplayCanvas::OnKeyPress(wxKeyEvent& event)
@@ -82,6 +90,7 @@ void DisplayCanvas::OnKeyPress(wxKeyEvent& event)
     if(Key == 13)
     {
     	SolveStepWise();
+    	SecondTimer->Start(1000);
         //wxMessageBox(wxT(" You pressed enter "),wxT(" Ain't that great ??"));
 
     }
@@ -111,6 +120,7 @@ void DisplayCanvas::OnKeyPress(wxKeyEvent& event)
     case WXK_DOWN:
 		CurrentState.Move(Direction::Down);
     default:
+    	Finished = false;
         break;
 
     }
@@ -180,7 +190,7 @@ void DisplayCanvas::LoadAllImages()
     for(int i=0;i<15;i++)
     {
     	ostringstream ImageName;
-    	ImageName<<ImageRoot<<"DK/CC"<<i+1<<".png";
+    	ImageName<<ImageRoot<<"BKD/CC"<<i+1<<".png";
         Textures[i]=LoadImageFile(ImageName.str());
     }
 }
@@ -234,7 +244,20 @@ void DisplayCanvas::SolveStepWise()
 		//Call this in a second;
 	if(StepCounter < MaxSteps)
 		CurrentState.Move(Solution.at(StepCounter++));
+	if(StepCounter == MaxSteps)
+	{
+		Finished = true;
+		SecondTimer->Stop();
+		//wxMessageBox(wxT("Finished Solving"),wxT("Completed"));
+	}
+	wxPaintEvent Dummy = wxPaintEvent();
+    OnPaint(Dummy);
 
+}
+
+void DisplayCanvas::OnSolveAutomatic(wxTimerEvent& event)
+{
+	SolveStepWise();
 }
 
 void DisplayCanvas::TimerFunc(int value)

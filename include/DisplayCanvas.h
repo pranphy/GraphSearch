@@ -4,6 +4,9 @@
 #include <wx/glcanvas.h>
 #include <wx/wx.h>
 #include <wx/msgdlg.h>
+#include <wx/timer.h>
+
+
 #include <GL/glut.h>
 #include <string>
 #include <sstream>
@@ -44,6 +47,7 @@ public:
 	void DrawOne(float,float,GLuint);
 
 	void SolveStepWise();
+	void OnSolveAutomatic(wxTimerEvent&);
 
 
 protected:
@@ -61,12 +65,17 @@ private:
 	Problem EightProblem;
 	vector<Direction> Solution;
 	int MaxSteps = 0, StepCounter = 0;
+	bool Finished = false;
 
 
 	static const long ID_DisplayCanvas;
+	static const long ID_SecondTimer;
 	void OnKeyPress(wxKeyEvent&);
 	GLuint LoadImageFile(string);
 	void DisplaySinglePhoto(float,float,GLuint);
+	wxTimer* SecondTimer;
+
+
 };
 
 #endif // DISPLAYCANVAS_H
