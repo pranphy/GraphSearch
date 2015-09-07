@@ -12,11 +12,13 @@
 
 //(*Headers(GraphSearchFrame)
 #include <wx/sizer.h>
+#include <wx/button.h>
 #include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 #include <wx/aui/aui.h>
+#include <wx/statbmp.h>
 //*)
 
 #include "DisplayCanvas.h"
@@ -36,7 +38,10 @@ class GraphSearchFrame: public wxFrame
         //*)
 
         //(*Identifiers(GraphSearchFrame)
+        static const long ID_STATICBITMAP1;
         static const long ID_PANEL1;
+        static const long ID_BUTTONss;
+        static const long ID_BUTTONTWO;
         static const long ID_DisplayPanel;
         static const long idMenuQuit;
         static const long idMenuAbout;
@@ -47,6 +52,9 @@ class GraphSearchFrame: public wxFrame
         wxPanel* DisplayPanel;
         wxPanel* Panel1;
         wxStatusBar* StatusBar1;
+        wxButton* FirstButton;
+        wxButton* SecondButton;
+        wxStaticBitmap* StaticBitmap1;
         wxAuiManager* AuiManager1;
         //*)
 
