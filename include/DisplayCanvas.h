@@ -46,8 +46,16 @@ public:
 	void DisplayIt(SlideCore);
 	void DrawOne(float,float,GLuint);
 
+
+	void SetImagePath(string);
+
 	void SolveStepWise();
 	void OnSolveAutomatic(wxTimerEvent&);
+
+	void Analyze();
+	void SolveAutomatic();
+
+
 
 
 protected:
@@ -57,6 +65,8 @@ private:
 	float BLOCK_LENGTH = 0.47;
 	float BLOCK_WIDTH  = 0.47;
 
+
+	string ImagePath;
 
 	float WindowHeight=680, WindowWidth=680;
     GLuint Textures[15];
@@ -73,6 +83,7 @@ private:
 	void OnKeyPress(wxKeyEvent&);
 	GLuint LoadImageFile(string);
 	void DisplaySinglePhoto(float,float,GLuint);
+
 	wxTimer* SecondTimer;
 
 

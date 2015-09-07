@@ -20,6 +20,7 @@ DisplayCanvas::DisplayCanvas(wxWindow*Parent):
     glutInit(&argc,argv);
     Initialize();
     SecondTimer = new wxTimer(this,ID_SecondTimer);
+    ImagePath = string("./res/images/DK");
 }
 
 void DisplayCanvas::Initialize()
@@ -70,7 +71,7 @@ void DisplayCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 		LoadAllImages();
 		OneTime = true;
 	}
-    glClearColor(0.0f,0.5f,0.4f,0);
+    glClearColor(1.0f,1.0f,1.0f,0);
     glClear(GL_COLOR_BUFFER_BIT);
     DrawTriangle();
     Render();
@@ -84,26 +85,36 @@ void DisplayCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 	}
 }
 
+void DisplayCanvas::Analyze()
+{
+	wxMessageBox(
+		wxT(" \
+			Analyzing the problem\n \
+			to solve using Search algorithm \
+		"),
+		wxT("\
+			Generating Solution\
+		")
+	);
+	EightProblem.ClearSequence();
+	//EightProblem.DisplayInfo();
+	EightProblem.Solve();
+	Solution = EightProblem.GetSolution();
+	MaxSteps = Solution.size();
+	StepCounter = 0;
+}
+
 void DisplayCanvas::OnKeyPress(wxKeyEvent& event)
 {
     int Key = event.GetUnicodeKey();
     if(Key == 13)
     {
-    	SolveStepWise();
-    	SecondTimer->Start(1000);
-        //wxMessageBox(wxT(" You pressed enter "),wxT(" Ain't that great ??"));
+    	SolveAutomatic();
 
     }
     else if(Key == '1')
 	{
-		wxMessageBox(wxT(" S pressed "),wxT(" Something happened"));
-		EightProblem.ClearSequence();
-		//EightProblem.DisplayInfo();
-		EightProblem.Solve();
-		Solution = EightProblem.GetSolution();
-		MaxSteps = Solution.size();
-		StepCounter = 0;
-
+		Analyze();
 	}
 
     switch(event.GetKeyCode())
@@ -186,11 +197,11 @@ void DisplayCanvas::DisplayIt(SlideCore Kernal)
 
 void DisplayCanvas::LoadAllImages()
 {
-   string ImageRoot = "./res/images/";
+   string ImageRoot = ImagePath;
     for(int i=0;i<15;i++)
     {
     	ostringstream ImageName;
-    	ImageName<<ImageRoot<<"BKD/CC"<<i+1<<".png";
+    	ImageName<<ImageRoot<<"/CC"<<i+1<<".png";
         Textures[i]=LoadImageFile(ImageName.str());
     }
 }
@@ -255,6 +266,11 @@ void DisplayCanvas::SolveStepWise()
 
 }
 
+void DisplayCanvas::SolveAutomatic()
+{
+	SecondTimer->Start(1000);
+}
+
 void DisplayCanvas::OnSolveAutomatic(wxTimerEvent& event)
 {
 	SolveStepWise();
@@ -266,6 +282,10 @@ void DisplayCanvas::TimerFunc(int value)
     //glutTimerFunc(10, TimerFunc, 0);
 }
 
+void DisplayCanvas::SetImagePath(string Path)
+{
+	ImagePath = Path;
+}
 
 GLuint DisplayCanvas::LoadImageFile(string FileName)
 {

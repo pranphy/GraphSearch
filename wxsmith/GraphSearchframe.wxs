@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxFrame" name="GraphSearchFrame">
-		<size>352,327</size>
-		<object class="wxAuiManager" variable="AuiManager1" member="yes">
+		<size>1000,850</size>
+		<id_arg>0</id_arg>
+		<object class="wxAuiManager" variable="OutermostAuiManager" member="yes">
 			<object class="AuiManagerItem">
-				<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+				<object class="wxPanel" name="ID_FullImagePanel" variable="FullImagePanel" member="yes">
 					<pos>101,185</pos>
-					<minsize>150,0</minsize>
-					<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
+					<minsize>250,0</minsize>
+					<object class="wxFlexGridSizer" variable="ControlFGSizer" member="no">
 						<cols>2</cols>
 						<rows>1</rows>
 						<growablecols>0</growablecols>
 						<growablerows>0</growablerows>
 						<object class="sizeritem">
-							<object class="wxStaticBoxSizer" variable="StaticBoxSizer1" member="no">
-								<label>Label</label>
-							</object>
-							<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-							<border>5</border>
-							<option>1</option>
-						</object>
-						<object class="sizeritem">
-							<object class="wxStaticBoxSizer" variable="StaticBoxSizer3" member="no">
+							<object class="wxStaticBoxSizer" variable="ControlSBSizer" member="no">
 								<label>Label</label>
 								<object class="sizeritem">
-									<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="StaticBitmap1" member="yes">
-										<bitmap>/home/pranphy/Pictures/8.jpg</bitmap>
+									<object class="wxFlexGridSizer" variable="UserFormFGSizer" member="no">
+										<cols>2</cols>
+										<rows>3</rows>
+										<object class="sizeritem">
+											<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+												<label>Name</label>
+											</object>
+											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
+										<object class="sizeritem">
+											<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
+												<size>124,22</size>
+											</object>
+											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<option>1</option>
+										</object>
 									</object>
 									<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 									<border>5</border>
@@ -33,7 +43,15 @@
 								</object>
 							</object>
 							<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-							<border>5</border>
+							<border>1</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxStaticBoxSizer" variable="FullImageSBSizer" member="no">
+								<label>Label</label>
+							</object>
+							<flag>wxALL|wxEXPAND|wxFIXED_MINSIZE|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>1</border>
 							<option>1</option>
 						</object>
 					</object>
@@ -52,7 +70,8 @@
 			<object class="AuiManagerItem">
 				<object class="wxPanel" name="ID_DisplayPanel" variable="DisplayPanel" member="yes">
 					<pos>153,159</pos>
-					<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
+					<minsize>400,-1</minsize>
+					<object class="wxFlexGridSizer" variable="PlayFGSizer" member="no">
 						<cols>1</cols>
 						<rows>2</rows>
 						<growablecols>0,1</growablecols>
@@ -62,23 +81,25 @@
 								<label>Move Pieces</label>
 							</object>
 							<flag>wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
-							<border>5</border>
+							<border>1</border>
 							<option>1</option>
 						</object>
 						<object class="sizeritem">
-							<object class="wxStaticBoxSizer" variable="StaticBoxSizer2" member="no">
+							<object class="wxStaticBoxSizer" variable="ButtonsSBSizer" member="no">
 								<label>Label</label>
 								<object class="sizeritem">
-									<object class="wxButton" name="ID_BUTTONss" variable="FirstButton" member="yes">
-										<label>Label</label>
+									<object class="wxButton" name="ID_AnalyzeButton" variable="AnalyzeButton" member="yes">
+										<label>Analyze</label>
+										<handler function="OnAnalyzeButtonClick" entry="EVT_BUTTON" />
 									</object>
 									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 									<border>5</border>
 									<option>1</option>
 								</object>
 								<object class="sizeritem">
-									<object class="wxButton" name="ID_BUTTONTWO" variable="SecondButton" member="yes">
-										<label>Label</label>
+									<object class="wxButton" name="ID_SolveAutomaticButton" variable="SolveAutomaticButton" member="yes">
+										<label>Solve Automatic</label>
+										<handler function="OnSolveAutomaticButtonClick" entry="EVT_BUTTON" />
 									</object>
 									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 									<border>5</border>
@@ -110,19 +131,25 @@
 				<firstadd>0</firstadd>
 			</object>
 		</object>
-		<object class="wxMenuBar" variable="MenuBar1" member="no">
-			<object class="wxMenu" variable="Menu1" member="no">
+		<object class="wxMenuBar" variable="OnlyMenuBar" member="no">
+			<object class="wxMenu" variable="FileMenu" member="no">
 				<label>&amp;File</label>
-				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItem1" member="no">
+				<object class="wxMenuItem" name="ID_SelectImageMenu" variable="SelectImageMenuItem" member="yes">
+					<label>SelectImage</label>
+					<accel>Ctrl+H</accel>
+					<help>Select The Image</help>
+					<handler function="OnSelectImageMenuItemSelected" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_MenuQuit" variable="QuitMenuItem" member="no">
 					<label>Quit</label>
 					<accel>Alt-F4</accel>
 					<help>Quit the application</help>
 					<handler function="OnQuit" entry="EVT_MENU" />
 				</object>
 			</object>
-			<object class="wxMenu" variable="Menu2" member="no">
+			<object class="wxMenu" variable="HelpMenu" member="no">
 				<label>Help</label>
-				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItem2" member="no">
+				<object class="wxMenuItem" name="ID_MenuAbout" variable="AboutMenuItem" member="no">
 					<label>About</label>
 					<accel>F1</accel>
 					<help>Show info about this application</help>
@@ -130,10 +157,14 @@
 				</object>
 			</object>
 		</object>
-		<object class="wxStatusBar" name="ID_STATUSBAR1" variable="StatusBar1" member="yes">
+		<object class="wxStatusBar" name="ID_OnlyStatusBar" variable="OnlyStatusBar" member="yes">
 			<fields>1</fields>
 			<widths>-1</widths>
 			<styles>wxSB_NORMAL</styles>
+		</object>
+		<object class="wxDirDialog" variable="ImageFolderDirDialog" member="yes">
+			<message>Select directory</message>
+			<default_path>./res/images</default_path>
 		</object>
 	</object>
 </wxsmith>
