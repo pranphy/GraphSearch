@@ -33,32 +33,27 @@ void DisplayCanvas::Initialize()
     SlideCore Initial(Goal);
 	CurrentState = Initial;
 
-	Initial.Move(Direction::Right);
-	//Initial.Move(Direction::Down);
-	//Initial.Move(Direction::Right);
-	//Initial.Move(Direction::Down);
-	//Initial.Move(Direction::Right);
-	Initial.Move(Direction::Down);
-	Initial.Move(Direction::Left);
-	//Initial.Move(Direction::Left);
-	Initial.Move(Direction::Up);
-	//Initial.Move(Direction::Left);
-	Initial.Move(Direction::Up);
-	//Initial.Move(Direction::Right);
-	//Initial.Move(Direction::Up);
-	Initial.Move(Direction::Right);
-	//Initial.Move(Direction::Down);
-	Initial.Move(Direction::Right);
-	//Initial.Move(Direction::Up);
+	ScrambleCurrentState();
 
 	EightProblem.SetGoalState(Goal);
-	EightProblem.SetInitialState(Initial);
+	//EightProblem.SetInitialState(Initial);
 	//EightProblem.Solve();
 	Solution = EightProblem.GetSolution();
 	MaxSteps = Solution.size();
-	CurrentState = Initial;
+	//CurrentState = Initial;
 	//LoadAllImages();
 	//ShuffleCards();
+}
+
+void DisplayCanvas::ScrambleCurrentState()
+{
+	//CurrentState = SlideCore(4,4);
+	//vector<Direction> Steps = {Right,Down,Right,Down,Left,Down,Right};
+	//vector<Direction> Steps = {Right,Down,Left,Down,Right,Down,Left,Up,Right,Up};
+	vector<Direction> Steps = {Right,Down,Right,Down,Left,Down,Right};
+	for(Direction Dir:Steps)
+		CurrentState.Move(Dir);
+	EightProblem.SetInitialState(CurrentState);
 }
 
 

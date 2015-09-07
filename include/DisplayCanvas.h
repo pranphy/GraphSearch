@@ -55,7 +55,7 @@ public:
 	void Analyze();
 	void SolveAutomatic();
 
-
+	void ScrambleCurrentState();
 
 
 protected:

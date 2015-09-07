@@ -95,7 +95,7 @@ GraphSearchFrame::GraphSearchFrame(wxWindow* parent,wxWindowID id)
     wxMenuItem* QuitMenuItem;
 
     Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(1000,850));
+    SetClientSize(wxSize(1200,850));
     OutermostAuiManager = new wxAuiManager(this, wxAUI_MGR_DEFAULT);
     FullImagePanel = new wxPanel(this, ID_FullImagePanel, wxPoint(101,185), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_FullImagePanel"));
     FullImagePanel->SetMinSize(wxSize(250,0));
@@ -208,6 +208,8 @@ void GraphSearchFrame::OnSelectImageMenuItemSelected(wxCommandEvent& event)
 	wxImage ScaledSelected = SelectedImage.Scale(ScaledImageWidth,ScaledImageHeight);
 	wxBitmap  SelectedFullImage(ScaledSelected);
     FullImage->SetBitmap(SelectedFullImage);
+
+    PhotoCanvas->ScrambleCurrentState();
 
 	/*Full Image changed*/
 	/* Repaint canvas*/
