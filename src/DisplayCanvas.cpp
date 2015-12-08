@@ -180,8 +180,6 @@ void DisplayCanvas::DisplayIt(SlideCore Kernal)
 			int Current=Kernal.GetVal(i,j);
 			if(Current)
 			{
-				//int Power=log(Current)/log(2)-1;
-				//cout<<" to display "<<Power<<" now "<<endl;
 				DrawOne(x,y,Textures[Current-1]);
 			}
 			x += BLOCK_LENGTH - 0.001;

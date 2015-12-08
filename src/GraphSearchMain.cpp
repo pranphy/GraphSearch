@@ -69,7 +69,7 @@ END_EVENT_TABLE()
 GraphSearchFrame::GraphSearchFrame(wxWindow* parent,wxWindowID id)
 {
 	ImagePath = string("./res/images");
-	DefaultFolder = string("/BKD");
+	DefaultFolder = string("/DK");
 
 	ostringstream FullImagePath;
 	FullImagePath<<ImagePath<<DefaultFolder<<"/Full.png";
@@ -95,7 +95,7 @@ GraphSearchFrame::GraphSearchFrame(wxWindow* parent,wxWindowID id)
     wxMenuItem* QuitMenuItem;
 
     Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(1200,850));
+    SetClientSize(wxSize(1000,850));
     OutermostAuiManager = new wxAuiManager(this, wxAUI_MGR_DEFAULT);
     FullImagePanel = new wxPanel(this, ID_FullImagePanel, wxPoint(101,185), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_FullImagePanel"));
     FullImagePanel->SetMinSize(wxSize(250,0));
@@ -120,9 +120,7 @@ GraphSearchFrame::GraphSearchFrame(wxWindow* parent,wxWindowID id)
     DisplayPanel->SetMinSize(wxSize(400,-1));
     PlayFGSizer = new wxFlexGridSizer(2, 1, 0, 0);
     PlayFGSizer->AddGrowableCol(0);
-    PlayFGSizer->AddGrowableCol(1);
-    PlayFGSizer->AddGrowableRow(0,8);
-    PlayFGSizer->AddGrowableRow(1,1);
+    PlayFGSizer->AddGrowableRow(0);
     PhotoSBSizer = new wxStaticBoxSizer(wxHORIZONTAL, DisplayPanel, _("Move Pieces"));
     PlayFGSizer->Add(PhotoSBSizer, 1, wxALL|wxEXPAND|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 1);
     ButtonsSBSizer = new wxStaticBoxSizer(wxHORIZONTAL, DisplayPanel, _("Label"));
@@ -134,7 +132,7 @@ GraphSearchFrame::GraphSearchFrame(wxWindow* parent,wxWindowID id)
     DisplayPanel->SetSizer(PlayFGSizer);
     PlayFGSizer->Fit(DisplayPanel);
     PlayFGSizer->SetSizeHints(DisplayPanel);
-    OutermostAuiManager->AddPane(DisplayPanel, wxAuiPaneInfo().Name(_T("PaneName")).CenterPane().Caption(_("Pane caption")).Row(1).Position(-1).MinSize(wxSize(400,-1)));
+    OutermostAuiManager->AddPane(DisplayPanel, wxAuiPaneInfo().Name(_T("PaneNameSecond")).CenterPane().Caption(_("Pane caption")).Row(1).Position(-1).MinSize(wxSize(400,-1)));
     OutermostAuiManager->Update();
     OnlyMenuBar = new wxMenuBar();
     FileMenu = new wxMenu();

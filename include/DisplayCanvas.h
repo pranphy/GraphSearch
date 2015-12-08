@@ -10,7 +10,7 @@
 #include <GL/glut.h>
 #include <string>
 #include <sstream>
-#include<vector>
+#include <vector>
 #include <stack>
 #include <queue>
 

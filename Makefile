@@ -1,7 +1,7 @@
 #CC = /usr/bin/i586-mingw32msvc-g++
 
 
-WXVERSION =2.8
+WXVERSION =3.0
 WXFLAGS  = `wx-config --version=$(WXVERSION) --cxxflags`
 WXLINKER = `wx-config --version=$(WXVERSION) --libs all --gl-libs`
 
@@ -11,9 +11,10 @@ OBJDIR = obj
 BINDIR = bin
 
 
-CC = g++
+CC = clang++
 
-FLAGS= -Wall -g -Os -std=c++11  -Iinclude -I/home/pranphy/MyRoot/lib $(WXFLAGS)
+INCLUDES = -I./include -I/home/pranphy/MyRoot/lib
+FLAGS= -Wall -g -Os -std=c++11  $(INCLUDES) $(WXFLAGS)
 LINKER = $(WXLINKER) -lglut -lGLU -lGL
 
 

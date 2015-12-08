@@ -74,8 +74,8 @@
 					<object class="wxFlexGridSizer" variable="PlayFGSizer" member="no">
 						<cols>1</cols>
 						<rows>2</rows>
-						<growablecols>0,1</growablecols>
-						<growablerows>0,1</growablerows>
+						<growablecols>0</growablecols>
+						<growablerows>0</growablerows>
 						<object class="sizeritem">
 							<object class="wxStaticBoxSizer" variable="PhotoSBSizer" member="no">
 								<label>Move Pieces</label>
@@ -112,7 +112,7 @@
 						</object>
 					</object>
 				</object>
-				<name>PaneName</name>
+				<name>PaneNameSecond</name>
 				<standardpanetype>Center</standardpanetype>
 				<caption>Pane caption</caption>
 				<captionvisible>0</captionvisible>
