@@ -7,7 +7,7 @@
  * License:
  **************************************************************/
 
-#include "GraphSearchMain.h"
+#include "wxGUI/GraphSearchMain.h"
 #include <wx/msgdlg.h>
 
 //(*InternalHeaders(GraphSearchFrame)

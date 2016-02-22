@@ -1,4 +1,4 @@
-#include "SlideCore.h"
+#include "Base/SlideCore.h"
 
 SlideCore::SlideCore():Matrix()
 {

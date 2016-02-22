@@ -23,7 +23,7 @@
 #include <wx/textctrl.h>
 //*)
 
-#include "DisplayCanvas.h"
+#include "wxGUI/DisplayCanvas.h"
 
 
 #include <sstream>

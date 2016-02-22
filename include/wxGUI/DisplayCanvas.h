@@ -14,10 +14,10 @@
 #include <stack>
 #include <queue>
 
-#include "SlideCore.h"
-#include "Fringe.h"
-#include "Node.h"
-#include "Problem.h"
+#include "Base/SlideCore.h"
+#include "Base/Fringe.h"
+#include "Base/Node.h"
+#include "Base/Problem.h"
 
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include "DisplayCanvas.h"
+#include "wxGUI/DisplayCanvas.h"
 
 const long DisplayCanvas::ID_DisplayCanvas = wxNewId();
 const long DisplayCanvas::ID_SecondTimer = wxNewId();

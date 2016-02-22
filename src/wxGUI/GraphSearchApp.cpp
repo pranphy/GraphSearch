@@ -7,10 +7,10 @@
  * License:
  **************************************************************/
 
-#include "GraphSearchApp.h"
+#include "wxGUI/GraphSearchApp.h"
 
 //(*AppHeaders
-#include "GraphSearchMain.h"
+#include "wxGUI/GraphSearchMain.h"
 #include <wx/image.h>
 //*)
 
