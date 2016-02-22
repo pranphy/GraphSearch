@@ -11,9 +11,6 @@ LIBDIR   = lib
 EXEFILE  = GraphSearch
 
 
-
-
-
 #Source Files to looks for
 SOURCES := $(wildcard $(SRCDIRS:%=src/%/*.cpp)) $(wildcard src/*.cpp)
 
@@ -22,11 +19,11 @@ SOURCES := $(wildcard $(SRCDIRS:%=src/%/*.cpp)) $(wildcard src/*.cpp)
 INCLUDES  = -Iinclude -I/home/pranphy/MyRoot/include
 LINKDIR   = -L$(LIBDIR) -L/home/pranphy/MyRoot/lib
 OGLIB     = -lglut -lGL -lGLU
-
+GENLIBS   = -lSQLiteCpp -lsqlite3
 
 CXX       = g++
 CXXLIBS   =
-LDLIBS    = $(LINKDIR) $(WXLIBS) $(DYNLIB) $(OGLIB) $(GENLIBS) -lSQLiteCpp -lsqlite3
+LDLIBS    = $(LINKDIR) $(WXLIBS) $(DYNLIB) $(OGLIB) $(GENLIBS)
 
 
 CXXFLAGS  = -Wall $(INCLUDES) --std=c++11 $(WXFLAGS) $(CXXLIBS)
