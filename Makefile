@@ -19,15 +19,13 @@ SOURCES := $(wildcard $(SRCDIRS:%=src/%/*.cpp)) $(wildcard src/*.cpp)
 INCLUDES  = -Iinclude -I/home/pranphy/MyRoot/include
 LINKDIR   = -L$(LIBDIR) -L/home/pranphy/MyRoot/lib
 OGLIB     = -lglut -lGL -lGLU
-GENLIBS   = -lSQLiteCpp -lsqlite3
+GENLIBS   = 
 
-CXX       = g++
-CXXLIBS   =
-LDLIBS    = $(LINKDIR) $(WXLIBS) $(DYNLIB) $(OGLIB) $(GENLIBS)
-
-
+CXX       = clang++
 CXXFLAGS  = -Wall $(INCLUDES) --std=c++11 $(WXFLAGS) $(CXXLIBS)
-LDFLAGS   = -std=c++11 $(LDLIBS)
+
+LDFLAGS   = -std=c++11 $(LINKDIR)
+LDLIBS    = $(WXLIBS) $(DYNLIB) $(OGLIB) $(GENLIBS)
 
 
 
@@ -52,7 +50,7 @@ Debug: $(DEXE)
 
 
 $(DEXE) : $(DOBJECTS) | $(DBINDIR)
-	$(CXX) -o $@ $^ $(LDFLAGS)
+	$(CXX) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
 $(DOBJDIR)/%.o: $(SRCDIR)/%.cpp | $(DOBJDIR)
 	$(CXX) -o $@ -c $< $(DFLAG) $(CXXFLAGS)
@@ -63,7 +61,7 @@ $(DOBJDIR)/%.o: $(SRCDIR)/%.cpp | $(DOBJDIR)
 Release: $(REXE)
 
 $(REXE) : $(ROBJECTS) | $(RBINDIR)
-	$(CXX) -o $@ $^ $(LDFLAGS)
+	$(CXX) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
 $(ROBJDIR)/%.o: $(SRCDIR)/%.cpp | $(ROBJDIR)
 	$(CXX) -c -o $@ $< $(RFLAG) $(CXXFLAGS)

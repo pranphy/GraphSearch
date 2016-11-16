@@ -1,0 +1,10 @@
+*.layout
+*.cbp
+bin/**
+obj/**
+*.depend
+doc/**
+*.swp
+*~
+.swp
+__pycache__
