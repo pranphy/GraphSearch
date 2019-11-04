@@ -4,7 +4,6 @@ const long DisplayCanvas::ID_DisplayCanvas = wxNewId();
 const long DisplayCanvas::ID_SecondTimer = wxNewId();
 
 
-
 BEGIN_EVENT_TABLE(DisplayCanvas,wxGLCanvas)
     EVT_PAINT(DisplayCanvas::OnPaint)
     EVT_KEY_DOWN(DisplayCanvas::OnKeyPress)
@@ -13,7 +12,9 @@ END_EVENT_TABLE()
 
 
 DisplayCanvas::DisplayCanvas(wxWindow*Parent):
-    wxGLCanvas(Parent, ID_DisplayCanvas,  wxDefaultPosition, wxSize(150,100), 0, wxT("GLCanvas"))
+    //xGLCanvas(Parent, ID_DisplayCanvas,  wxDefaultPosition, wxSize(150,100), 0, wxT("GLCanvas")),
+    wxGLCanvas(Parent, dispattr),
+    context(this)
 {
     int argc = 1;
     char* argv[1] = { wxString((wxTheApp->argv)[0]).char_str() };
@@ -25,7 +26,7 @@ DisplayCanvas::DisplayCanvas(wxWindow*Parent):
 
 void DisplayCanvas::Initialize()
 {
-	SetCurrent();
+	SetCurrent(context);
 	glEnable(GL_DEPTH_TEST);
     LoadAllImages();
 
@@ -59,7 +60,7 @@ void DisplayCanvas::ScrambleCurrentState()
 
 void DisplayCanvas::OnPaint(wxPaintEvent& WXUNUSED(event))
 {
-	SetCurrent();
+	SetCurrent(context);
 	static bool OneTime = false;
 	if(OneTime == false)
 	{

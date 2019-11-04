@@ -1,4 +1,4 @@
-WXVERSION = 3.0
+WXVERSION = 3.1
 WXFLAGS   = `wx-config --version=$(WXVERSION) --cxxflags`
 WXLIBS    = `wx-config --version=$(WXVERSION) --libs all --gl-libs`
 
@@ -16,12 +16,12 @@ SOURCES := $(wildcard $(SRCDIRS:%=src/%/*.cpp)) $(wildcard src/*.cpp)
 
 
 
-INCLUDES  = -Iinclude -I/home/pranphy/MyRoot/include
-LINKDIR   = -L$(LIBDIR) -L/home/pranphy/MyRoot/lib
+INCLUDES  = -Iinclude -I/home/pranphy/MyRoot/usr/include
+LINKDIR   = -L$(LIBDIR) -L/home/pranphy/MyRoot/usr/lib
 OGLIB     = -lglut -lGL -lGLU
 GENLIBS   = 
 
-CXX       = clang++
+CXX       = g++
 CXXFLAGS  = -Wall $(INCLUDES) --std=c++11 $(WXFLAGS) $(CXXLIBS)
 
 LDFLAGS   = -std=c++11 $(LINKDIR)

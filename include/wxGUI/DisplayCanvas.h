@@ -62,8 +62,8 @@ protected:
 	DECLARE_EVENT_TABLE()
 private:
 
-	float BLOCK_LENGTH = 0.47;
-	float BLOCK_WIDTH  = 0.47;
+	const float BLOCK_LENGTH = 0.47;
+	const float BLOCK_WIDTH  = 0.47;
 
 
 	string ImagePath;
@@ -84,9 +84,12 @@ private:
 	GLuint LoadImageFile(string);
 	void DisplaySinglePhoto(float,float,GLuint);
 
-	wxTimer* SecondTimer;
+    wxGLContext context;
+    wxGLAttributes dispattr;
 
+	wxTimer* SecondTimer;
 
 };
 
 #endif // DISPLAYCANVAS_H
+
