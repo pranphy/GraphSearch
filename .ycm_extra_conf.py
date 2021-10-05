@@ -4,9 +4,7 @@ import subprocess
 
 import os
 
-
-
-def GetStdFlags():
+def get_std_flags():
     flags = [
     '-Wall',
     '-Wextra',
@@ -22,21 +20,21 @@ def GetStdFlags():
     ]
     return flags
 
-def GetConfigParams(config):
+def get_config_params(config):
     got  = subprocess.run(config.split(),stdout=subprocess.PIPE)
     rvalue = got.stdout.decode('utf-8').strip()
     made = rvalue.replace('-I','-I ').split()
     return made 
 
-def FlagsForFile( filename, **kwargs ):
+def Settings(**kwargs):
     config ="wx-config --cflags"
-    flags = GetStdFlags() + GetConfigParams(config)
+    flags = get_std_flags() + get_config_params(config)
     rmap =  {
         'flags': flags,
         'do_cache': True
     }
-    print(rmap)
     return rmap;
 
 if __name__ == '__main__':
-    FlagsForFile('basic.C')
+    print(Settings())
+

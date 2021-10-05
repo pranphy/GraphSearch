@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-#include "PML/MatrixPrakash.h"
+#include "PML/MatrixPrakash.hpp"
 
 enum Direction{Up ,Down,Left,Right};
 //vector<string> DirectionString = {string("Up"),string("Down"),string("Left"),string("Right")};

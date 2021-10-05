@@ -134,8 +134,6 @@ void DisplayCanvas::OnKeyPress(wxKeyEvent& event)
 
     EightProblem.SetInitialState(CurrentState);
 
-    wxPaintEvent Dummy = wxPaintEvent();
-    OnPaint(Dummy);
 }
 
 
@@ -255,8 +253,6 @@ void DisplayCanvas::SolveStepWise()
 		SecondTimer->Stop();
 		//wxMessageBox(wxT("Finished Solving"),wxT("Completed"));
 	}
-	wxPaintEvent Dummy = wxPaintEvent();
-    OnPaint(Dummy);
 
 }
 

@@ -211,8 +211,6 @@ void GraphSearchFrame::OnSelectImageMenuItemSelected(wxCommandEvent& event)
 
 	/*Full Image changed*/
 	/* Repaint canvas*/
-	wxPaintEvent Dummy;
-	PhotoCanvas->OnPaint(Dummy);
 	/*Canvas repainted*/
 }
 
